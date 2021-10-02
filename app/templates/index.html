@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+<div class="jumbotron jumbotron-frontpage" >
+    <div class="container">
+
+        <h1>PhotoBlog</h1>
+        <p>A closed Network to share Photos with Friends, Family or Teams.</p>
+        {% if not current_user.is_authenticated %}
+        <p><a class="btn btn-custom btn-lg" href="{{ url_for('auth.register') }}" role="button">Join the Community</a></p>
+        {% endif %}
+        {% if current_user.is_authenticated %}
+        <p><a class="btn btn-custom btn-lg" href="{{ url_for('views.timeline') }}" role="button">Show me the Photos!</a></p>
+        {% endif %}
+
+    </div>
+  </div>
+</div>
+{% endblock %}

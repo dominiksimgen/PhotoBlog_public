@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block content %}
+<div class="timeline">
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="thumbnail thumbnail-post thumbnail-lg">
+                <a href="{{ url_for('views.timeline') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z" />
+                    </svg>
+                </a>
+                <img src="data:;base64,{{ image }}">
+                <div class="caption">
+                    <h4>{{post.subtitle}}</h4>
+                    <h5>{{post.author.name}}</h5>
+                    <p>{{post.body}}</p>
+                    <p>
+                        <a href="#" class="btn btn-custom-like" role="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" fill="currentColor"
+                                class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                            </svg></i>
+                        </a>
+                    </p>
+                </div>
+
+                {%for comment in post.comments: %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ comment.comment_author.name }}</h3>
+                    </div>
+                    <div class="panel-body">
+                        {{ comment.text|safe }}
+                    </div>
+                </div>
+
+                {% endfor %}
+
+                {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "custom-right"}) }}
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

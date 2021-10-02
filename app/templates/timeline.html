@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="timeline">
+    <div class="row">
+        {% for post in all_posts %}
+        <div class="col-xl-3 col-lg-4 col-md-6">
+            <div class="thumbnail thumbnail-post">
+                <a href="{{ url_for('views.view_post', post_id=post.id) }}"><img src="data:;base64,{{ images[post.id] }}"></a>
+                <div class="caption">
+                    <h4>{{post.subtitle}}</h4> <h5>{{post.author.name}}</h5>
+                    <p>{{post.body}}</p>
+                    <p>
+                        <a href="#" class="btn btn-custom-like" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="14" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                          </svg></i></a> 
+                        <a href="{{ url_for('views.view_post', post_id=post.id) }}" class="btn btn-custom" role="button">Comment</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
