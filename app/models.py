@@ -2,6 +2,12 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager
 from sqlalchemy.orm import relationship
 from . import db
+from sqlalchemy.dialects.postgresql import \
+    ARRAY, BIGINT, BIT, BOOLEAN, BYTEA, CHAR, CIDR, DATE, \
+    DOUBLE_PRECISION, ENUM, FLOAT, HSTORE, INET, INTEGER, \
+    INTERVAL, JSON, JSONB, MACADDR, MONEY, NUMERIC, OID, REAL, SMALLINT, TEXT, \
+    TIME, TIMESTAMP, UUID, VARCHAR, INT4RANGE, INT8RANGE, NUMRANGE, \
+    DATERANGE, TSRANGE, TSTZRANGE, TSVECTOR
      
 login_manager = LoginManager()
 
