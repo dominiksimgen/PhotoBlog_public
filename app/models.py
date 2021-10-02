@@ -28,7 +28,7 @@ class PhotoPost(db.Model):
     #Erzeugt eine Referenz zum User Object, und bezieht sich auf das "posts" Attribut der User Klasse.
     author = relationship("User", back_populates="posts")
 
-    img = db.Column(db.BLOB)
+    img = db.Column(db.BYTEA)
     subtitle = db.Column(db.String(250))
     date = db.Column(db.String(250), nullable=False)
     body = db.Column(db.Text, nullable=False)
