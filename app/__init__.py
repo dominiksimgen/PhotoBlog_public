@@ -13,7 +13,7 @@ DB_NAME = 'photo_blog.db'
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL", "sqlite:///blog.db") # second argument fallback, if DB specified in environment variable is not available, for example on local machine.
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("NEW_DB_URL", "sqlite:///blog.db") # second argument fallback, if DB specified in environment variable is not available, for example on local machine.
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
     from .auth import auth
