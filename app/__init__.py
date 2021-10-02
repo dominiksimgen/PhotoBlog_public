@@ -25,7 +25,7 @@ def create_app():
     app.register_blueprint(views)
 
     from .models import User,PhotoPost,Comment
-    create_database(app)
+    db.create_all(app=app)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
@@ -37,7 +37,7 @@ def create_app():
 
     return app
 
-def create_database(app):
-    if not path.exists(f'app/{DB_NAME}'):
-        db.create_all(app=app)
-        print('created database!')
+#def create_database(app):
+#    if not path.exists(f'app/{DB_NAME}'):
+#       db.create_all(app=app)
+#       print('created database!')
