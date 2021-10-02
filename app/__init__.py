@@ -25,7 +25,7 @@ def create_app():
     app.register_blueprint(views)
 
     from .models import User,PhotoPost,Comment
-    db.create_all(app=app)
+    #db.create_all(app=app)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
