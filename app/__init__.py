@@ -12,8 +12,8 @@ DB_NAME = 'photo_blog.db'
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("NEW_DB_URL", "sqlite:///blog.db") # second argument fallback, if DB specified in environment variable is not available, for example on local machine.
+    app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", "\xa5\x1d>\x8d9\x18@\xa1\xe9:\x07^\r\x81tP")
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("NEW_DB_URL", f"sqlite:///{DB_NAME}") # second argument fallback, if DB specified in environment variable is not available, for example on local machine.
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
     from .auth import auth
@@ -25,7 +25,7 @@ def create_app():
     app.register_blueprint(views)
 
     from .models import User,PhotoPost,Comment
-    #db.create_all(app=app)
+    db.create_all(app=app)
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
@@ -37,7 +37,7 @@ def create_app():
 
     return app
 
-#def create_database(app):
-#    if not path.exists(f'app/{DB_NAME}'):
-#       db.create_all(app=app)
-#       print('created database!')
+def create_database(app):
+    if not path.exists(f'app/{DB_NAME}'):
+       db.create_all(app=app)
+       print('created database!')
